@@ -3,6 +3,8 @@
 
 Coderbyte.com is a site that has coding challenges. This repository contains my solutions -- to see them open index.html in a browser and follow the links.
 
+EDIT: This project is on permanent hold. Codebyte.com only allows non-paying users to access the first 10 problems.
+
 Goals in order:
  * Relearn JavaScript by doing challenges (each challenge in own webpage).
  * Relearn and learn JS libraries and frameworks (JQuery mainly).
