@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 <head>
@@ -7,8 +6,64 @@
    <meta name="description" content="Solution to the &quot;first reverse&quot; problem.">
    <title>First reverse</title>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="../js/underscore-min.js"></script>
 </head>
 <body>
-   <p>TODO: Create interactive demonstration and a test log.</p>
+
+
+   <p>Type a string inside to see the results.</p>
+
+   <textarea id="input" rows="4" cols="40"></textarea>
+   <textarea id="output" readonly="readonly" rows="4" cols="40"></textarea>
+
+   <div id="testlog">
+      <p>Test log:</p>
+      <table></table>
+   </div>
+
+   <script type="text/JavaScript">
+      // The solution to the problem.
+      function firstReverse(str) {
+         reversed = '';
+         if (typeof str === 'string') {
+            for (var i = 0; i < str.length; i++) {
+               reversed += str[str.length - 1 - i];
+            }
+         }
+         return reversed;
+      }
+      
+      // Use the textareas to interactively showcase `firstReverse()`.
+      $('#input').keyup(() => {
+         $('#output').val(firstReverse($('#input').val()));
+      });
+
+      // Non-interactive tests:
+      var tests = [
+         { input: 'Hello, world.', expected: '.dlrow ,olleH' },
+         { input: 'foobaz', expected: 'zaboof' },
+         { input: 'Madam, I\'m Adam.', expected: '.madA m\'I ,madaM' },
+         { input: 'quux', expected: 'xuuq' }, 
+         { input: 'doorbell', expected: 'llebrood' }
+      ]
+      var testtablehtml = '<tr>' +
+         '<th>Input</th>' +
+         '<th>Output</th>' +
+         '<th>Expected output</th>' +
+         '<th>Success?</th>' +
+         '</tr>'; 
+      _.each(tests, test => {
+         var output = firstReverse(test.input);
+         testtablehtml += '<tr>' +
+            '<td>' + test.input + '</td>' +
+            '<td>' + output + '</td>' +
+            '<td>' + test.expected + '</td>' +
+            '<td>' + (output === test.expected ? 'Y' : 'N') + '</td>' +
+            '</tr>';
+      });
+      $(testtablehtml).appendTo('#testlog', 'table');
+      
+   </script>
+
 </body>
 </html>
